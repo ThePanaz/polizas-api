@@ -130,7 +130,6 @@ public class PolizaService {
         return created;
     }
 
-    // (Si vas a exponer el requisito 6 en controller)
     public Riesgo cancelarRiesgo(String riesgoId) {
         Riesgo r = riesgoRepository.findById(riesgoId)
                 .orElseThrow(() -> new IllegalArgumentException("Riesgo no encontrado: " + riesgoId));

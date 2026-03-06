@@ -87,7 +87,6 @@ public class PolizaRepository {
         Poliza p = findByNumeroPoliza(numeroPoliza)
                 .orElseThrow(() -> new IllegalArgumentException("Póliza no encontrada: " + numeroPoliza));
 
-        // si tu regla dice que no se puede renovar cancelada, esto te cuadra con tu controller (409)
         if ("CANCELADA".equalsIgnoreCase(p.getEstado())) {
             throw new IllegalStateException("No se puede renovar una póliza CANCELADA");
         }
@@ -107,11 +106,8 @@ public class PolizaRepository {
     }
 
     private void normalizeDefaults(Poliza poliza) {
-        // Si llegan en 0, ponles algo (puedes ajustar esta regla como quieras)
         if (poliza.getCanon() <= 0) poliza.setCanon(1000000);
         if (poliza.getPrima() <= 0) poliza.setPrima(50000);
-
-        // Normaliza estado si viene vacío
         if (poliza.getEstado() == null || poliza.getEstado().isBlank()) {
             poliza.setEstado("ACTIVA");
         }

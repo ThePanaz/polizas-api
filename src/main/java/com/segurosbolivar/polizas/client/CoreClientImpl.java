@@ -28,7 +28,7 @@ public class CoreClientImpl implements CoreClient {
         try {
             Map<String, Object> body = new HashMap<>();
             body.put("evento", "ACTUALIZACION");
-            body.put("polizaId", polizaId); // tu id real hoy es String (P-001), está ok
+            body.put("polizaId", polizaId);
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
